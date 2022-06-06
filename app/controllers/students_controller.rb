@@ -1,8 +1,11 @@
 class StudentsController < ApplicationController
 
   def index
-    students = Student.all
-    render json: students
+    render json: params[:name] ? Student.by_name(params[:name]) : Student.all 
+  end
+  
+  def show
+    render json: Student.find(params[:id])
   end
 
 end
